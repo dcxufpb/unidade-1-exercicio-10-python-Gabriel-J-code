@@ -5,10 +5,10 @@ import pytest
 
 
 def verifica_campo_obrigatorio_objeto(mensagem_esperada, loja):
-    with pytest.raises(Exception) as excinfo:
-        loja.dados_loja()
-    the_exception = excinfo.value
-    assert mensagem_esperada == str(the_exception)
+	with pytest.raises(Exception) as excinfo:
+		loja.dados_loja()
+	the_exception = excinfo.value
+	assert mensagem_esperada == str(the_exception)
 
 
 # Todas as variaveis preenchidas
@@ -27,8 +27,8 @@ INSCRICAO_ESTADUAL = "123456789"
 
 
 LOJA_COMPLETA = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO,
-                           MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                           INSCRICAO_ESTADUAL)
+						MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+						INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_LOJA_COMPLETA = """Loja 1
 Log 1, 10 C1
@@ -40,58 +40,58 @@ IE: 123456789"""
 
 
 def test_loja_completa():
-    assert (
-        LOJA_COMPLETA.dados_loja() == TEXTO_ESPERADO_LOJA_COMPLETA
-    )
+	assert (
+		LOJA_COMPLETA.dados_loja() == TEXTO_ESPERADO_LOJA_COMPLETA
+	)
 
 
 LOJA_NOME_NULO = cupom.Loja(None, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO,
-                            MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                            INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 LOJA_NOME_VAZIO = cupom.Loja("", LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO,
-                             MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                             INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 MENSAGEM_NOME_OBRIGATORIO = "O campo nome da loja é obrigatório"
 
 
 def test_valida_nome():
-    verifica_campo_obrigatorio_objeto(MENSAGEM_NOME_OBRIGATORIO,
-                                      LOJA_NOME_NULO)
-    verifica_campo_obrigatorio_objeto(MENSAGEM_NOME_OBRIGATORIO,
-                                      LOJA_NOME_VAZIO)
+	verifica_campo_obrigatorio_objeto(MENSAGEM_NOME_OBRIGATORIO,
+									LOJA_NOME_NULO)
+	verifica_campo_obrigatorio_objeto(MENSAGEM_NOME_OBRIGATORIO,
+									LOJA_NOME_VAZIO)
 
 
 LOJA_LOGRADOURO_NULO = cupom.Loja(NOME_LOJA, None, NUMERO, COMPLEMENTO, BAIRRO,
-                                  MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                                  INSCRICAO_ESTADUAL)
+								MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+								INSCRICAO_ESTADUAL)
 
 LOJA_LOGRADOURO_VAZIO = cupom.Loja(NOME_LOJA, "", NUMERO, COMPLEMENTO, BAIRRO,
-                                   MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                                   INSCRICAO_ESTADUAL)
+								MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+								INSCRICAO_ESTADUAL)
 
 MENSAGEM_LOGRADOURO_OBRIGATORIO = "O campo logradouro do endereço é obrigatório"
 
 
 def test_valida_logradouro():
-    verifica_campo_obrigatorio_objeto(MENSAGEM_LOGRADOURO_OBRIGATORIO,
-                                      LOJA_LOGRADOURO_NULO)
-    verifica_campo_obrigatorio_objeto(MENSAGEM_LOGRADOURO_OBRIGATORIO,
-                                      LOJA_LOGRADOURO_VAZIO)
+	verifica_campo_obrigatorio_objeto(MENSAGEM_LOGRADOURO_OBRIGATORIO,
+									LOJA_LOGRADOURO_NULO)
+	verifica_campo_obrigatorio_objeto(MENSAGEM_LOGRADOURO_OBRIGATORIO,
+									LOJA_LOGRADOURO_VAZIO)
 
 
 LOJA_NUMERO_ZERO = cupom.Loja(NOME_LOJA, LOGRADOURO, 0, COMPLEMENTO, BAIRRO,
-                              MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                              INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 LOJA_NUMERO_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, None, COMPLEMENTO, BAIRRO,
-                              MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                              INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 LOJA_NUMERO_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, "", COMPLEMENTO, BAIRRO,
-                               MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                               INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 
 TEXTO_ESPERADO_SEM_NUMERO = """Loja 1
@@ -104,18 +104,18 @@ IE: 123456789"""
 
 
 def test_valida_numero():
-    assert (LOJA_NUMERO_ZERO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
-    assert (LOJA_NUMERO_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
-    assert (LOJA_NUMERO_NULO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
+	assert (LOJA_NUMERO_ZERO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
+	assert (LOJA_NUMERO_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
+	assert (LOJA_NUMERO_NULO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO)
 
 
 LOJA_COMPLEMENTO_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, None, BAIRRO,
-                                   MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                                   INSCRICAO_ESTADUAL)
+								MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+								INSCRICAO_ESTADUAL)
 
 LOJA_COMPLEMENTO_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, "", BAIRRO,
-                                    MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                                    INSCRICAO_ESTADUAL)
+									MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+									INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_COMPLEMENTO = """Loja 1
 Log 1, 10
@@ -127,19 +127,19 @@ IE: 123456789"""
 
 
 def test_valida_complemento():
-    assert (LOJA_COMPLEMENTO_NULO.dados_loja()
-            == TEXTO_ESPERADO_SEM_COMPLEMENTO)
-    assert (LOJA_COMPLEMENTO_VAZIO.dados_loja()
-            == TEXTO_ESPERADO_SEM_COMPLEMENTO)
+	assert (LOJA_COMPLEMENTO_NULO.dados_loja()
+			== TEXTO_ESPERADO_SEM_COMPLEMENTO)
+	assert (LOJA_COMPLEMENTO_VAZIO.dados_loja()
+			== TEXTO_ESPERADO_SEM_COMPLEMENTO)
 
 
 LOJA_BAIRRO_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO, None,
-                              MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                              INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 LOJA_BAIRRO_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO, "",
-                               MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
-                               INSCRICAO_ESTADUAL)
+							MUNICIPIO, ESTADO, CEP, TELEFONE, OBSERVACAO, CNPJ,
+							INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_BAIRRO = """Loja 1
 Log 1, 10 C1
@@ -151,48 +151,48 @@ IE: 123456789"""
 
 
 def test_valida_bairro():
-    assert (LOJA_BAIRRO_NULO.dados_loja()
-            == TEXTO_ESPERADO_SEM_BAIRRO)
-    assert (LOJA_BAIRRO_VAZIO.dados_loja()
-            == TEXTO_ESPERADO_SEM_BAIRRO)
+	assert (LOJA_BAIRRO_NULO.dados_loja()
+			== TEXTO_ESPERADO_SEM_BAIRRO)
+	assert (LOJA_BAIRRO_VAZIO.dados_loja()
+			== TEXTO_ESPERADO_SEM_BAIRRO)
 
 
 LOJA_MUNICIPIO_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                 BAIRRO, None, ESTADO, CEP, TELEFONE,
-                                 OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, None, ESTADO, CEP, TELEFONE,
+								OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 LOJA_MUNICIPIO_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                  BAIRRO, "", ESTADO, CEP, TELEFONE,
-                                  OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, "", ESTADO, CEP, TELEFONE,
+								OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 
 
 def test_valida_municipio():
-    verifica_campo_obrigatorio_objeto(
-        "O campo município do endereço é obrigatório", LOJA_MUNICIPIO_NULO)
-    verifica_campo_obrigatorio_objeto(
-        "O campo município do endereço é obrigatório", LOJA_MUNICIPIO_VAZIO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo município do endereço é obrigatório", LOJA_MUNICIPIO_NULO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo município do endereço é obrigatório", LOJA_MUNICIPIO_VAZIO)
 
 
 LOJA_ESTADO_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                              BAIRRO, MUNICIPIO, None, CEP, TELEFONE,
-                              OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+							BAIRRO, MUNICIPIO, None, CEP, TELEFONE,
+							OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 LOJA_ESTADO_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                               BAIRRO, MUNICIPIO, "", CEP, TELEFONE,
-                               OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+							BAIRRO, MUNICIPIO, "", CEP, TELEFONE,
+							OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 
 
 def test_valida_estado():
-    verifica_campo_obrigatorio_objeto(
-        "O campo estado do endereço é obrigatório", LOJA_ESTADO_NULO)
-    verifica_campo_obrigatorio_objeto(
-        "O campo estado do endereço é obrigatório", LOJA_ESTADO_NULO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo estado do endereço é obrigatório", LOJA_ESTADO_NULO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo estado do endereço é obrigatório", LOJA_ESTADO_NULO)
 
 
 LOJA_CEP_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                           BAIRRO, MUNICIPIO, ESTADO, None, TELEFONE,
-                           OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+						BAIRRO, MUNICIPIO, ESTADO, None, TELEFONE,
+						OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 LOJA_CEP_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                            BAIRRO, MUNICIPIO, ESTADO, "", TELEFONE,
-                            OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+							BAIRRO, MUNICIPIO, ESTADO, "", TELEFONE,
+							OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_CEP = """Loja 1
 Log 1, 10 C1
@@ -204,16 +204,16 @@ IE: 123456789"""
 
 
 def test_valida_cep():
-    assert LOJA_CEP_NULO.dados_loja() == TEXTO_ESPERADO_SEM_CEP
-    assert LOJA_CEP_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_CEP
+	assert LOJA_CEP_NULO.dados_loja() == TEXTO_ESPERADO_SEM_CEP
+	assert LOJA_CEP_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_CEP
 
 
 LOJA_TELEFONE_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                BAIRRO, MUNICIPIO, ESTADO, CEP, None,
-                                OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, MUNICIPIO, ESTADO, CEP, None,
+								OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 LOJA_TELEFONE_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                 BAIRRO, MUNICIPIO, ESTADO, CEP, "",
-                                 OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, MUNICIPIO, ESTADO, CEP, "",
+								OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_TELEFONE = """Loja 1
 Log 1, 10 C1
@@ -225,16 +225,16 @@ IE: 123456789"""
 
 
 def test_sem_telefone():
-    assert LOJA_TELEFONE_NULO.dados_loja() == TEXTO_ESPERADO_SEM_TELEFONE
-    assert LOJA_TELEFONE_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_TELEFONE
+	assert LOJA_TELEFONE_NULO.dados_loja() == TEXTO_ESPERADO_SEM_TELEFONE
+	assert LOJA_TELEFONE_VAZIO.dados_loja() == TEXTO_ESPERADO_SEM_TELEFONE
 
 
 LOJA_OBSERVACAO_NULA = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                  BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                                  None, CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+								None, CNPJ, INSCRICAO_ESTADUAL)
 LOJA_OBSERVACAO_VAZIA = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                                   BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                                   "", CNPJ, INSCRICAO_ESTADUAL)
+								BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+								"", CNPJ, INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_OBSERVACAO = """Loja 1
 Log 1, 10 C1
@@ -246,44 +246,44 @@ IE: 123456789"""
 
 
 def test_valida_observacao():
-    assert LOJA_OBSERVACAO_NULA.dados_loja() == TEXTO_ESPERADO_SEM_OBSERVACAO
-    assert LOJA_OBSERVACAO_VAZIA.dados_loja() == TEXTO_ESPERADO_SEM_OBSERVACAO
+	assert LOJA_OBSERVACAO_NULA.dados_loja() == TEXTO_ESPERADO_SEM_OBSERVACAO
+	assert LOJA_OBSERVACAO_VAZIA.dados_loja() == TEXTO_ESPERADO_SEM_OBSERVACAO
 
 
 LOJA_CNPJ_NULO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                            BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                            OBSERVACAO, None, INSCRICAO_ESTADUAL)
+							BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+							OBSERVACAO, None, INSCRICAO_ESTADUAL)
 LOJA_CNPJ_VAZIO = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                             BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                             OBSERVACAO, "", INSCRICAO_ESTADUAL)
+							BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+							OBSERVACAO, "", INSCRICAO_ESTADUAL)
 
 
 def test_valida_cnpj():
-    verifica_campo_obrigatorio_objeto(
-        "O campo CNPJ da loja é obrigatório", LOJA_CNPJ_VAZIO)
-    verifica_campo_obrigatorio_objeto(
-        "O campo CNPJ da loja é obrigatório", LOJA_CNPJ_NULO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo CNPJ da loja é obrigatório", LOJA_CNPJ_VAZIO)
+	verifica_campo_obrigatorio_objeto(
+		"O campo CNPJ da loja é obrigatório", LOJA_CNPJ_NULO)
 
 
 LOJA_IE_NULA = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                          BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                          OBSERVACAO, CNPJ, None)
+						BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+						OBSERVACAO, CNPJ, None)
 LOJA_IE_VAZIA = cupom.Loja(NOME_LOJA, LOGRADOURO, NUMERO, COMPLEMENTO,
-                           BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
-                           OBSERVACAO, CNPJ, "")
+						BAIRRO, MUNICIPIO, ESTADO, CEP, TELEFONE,
+						OBSERVACAO, CNPJ, "")
 
 
 def test_valida_inscricao_estadual():
-    verifica_campo_obrigatorio_objeto(
-        "O campo inscrição estadual da loja é obrigatório", LOJA_IE_NULA)
-    verifica_campo_obrigatorio_objeto(
-        "O campo inscrição estadual da loja é obrigatório", LOJA_IE_VAZIA)
+	verifica_campo_obrigatorio_objeto(
+		"O campo inscrição estadual da loja é obrigatório", LOJA_IE_NULA)
+	verifica_campo_obrigatorio_objeto(
+		"O campo inscrição estadual da loja é obrigatório", LOJA_IE_VAZIA)
 
 
 LOJA_SEM_NUMERO_SEM_COMPLEMENTO = cupom.Loja(NOME_LOJA, LOGRADOURO, None, None,
-                                             BAIRRO, MUNICIPIO, ESTADO, CEP,
-                                             TELEFONE, OBSERVACAO, CNPJ,
-                                             INSCRICAO_ESTADUAL)
+											BAIRRO, MUNICIPIO, ESTADO, CEP,
+											TELEFONE, OBSERVACAO, CNPJ,
+											INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO = '''Loja 1
 Log 1, s/n
@@ -295,14 +295,14 @@ IE: 123456789'''
 
 
 def test_valida_numero_e_complemento():
-    assert LOJA_SEM_NUMERO_SEM_COMPLEMENTO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO
+	assert LOJA_SEM_NUMERO_SEM_COMPLEMENTO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO
 
 
 LOJA_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO = cupom.Loja(NOME_LOJA, LOGRADOURO, None,
-                                                  None, None, MUNICIPIO,
-                                                  ESTADO, CEP, TELEFONE,
-                                                  OBSERVACAO, CNPJ,
-                                                  INSCRICAO_ESTADUAL)
+												None, None, MUNICIPIO,
+												ESTADO, CEP, TELEFONE,
+												OBSERVACAO, CNPJ,
+												INSCRICAO_ESTADUAL)
 
 TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO = '''Loja 1
 Log 1, s/n
@@ -314,29 +314,34 @@ IE: 123456789'''
 
 
 def test_valida_numero_complemento_e_bairro():
-    assert LOJA_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO
+	assert LOJA_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO.dados_loja() == TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO
 
 
 def test_exercicio2_customizado():
 
-    # Defina seus próprios valores para as variáveis a seguir
-    nome_loja = ""
-    logradouro = ""
-    numero = 0
-    complemento = ""
-    bairro = ""
-    municipio = ""
-    estado = ""
-    cep = ""
-    telefone = ""
-    observacao = ""
-    cnpj = ""
-    inscricao_estadual = ""
+	# Defina seus próprios valores para as variáveis a seguir
+	nome_loja = "Tropical"
+	logradouro = "Rua siqueira Campos"
+	numero = 580
+	complemento = ""
+	bairro = "Centro"
+	municipio = "Paulista"
+	estado = "Pernambuco"
+	cep = "53401-320"
+	telefone = "(81) 3438-5714"
+	observacao = ""
+	cnpj = "37.886.772/0001-82"
+	inscricao_estadual = "4232303-79"
 
-    loja_customizada = cupom.Loja(nome_loja, logradouro, numero, complemento,
-                                 bairro, municipio, estado, cep, telefone,
-                                 observacao, cnpj, inscricao_estadual)
+	loja_customizada = cupom.Loja(nome_loja, logradouro, numero, complemento,
+								bairro, municipio, estado, cep, telefone,
+								observacao, cnpj, inscricao_estadual)
 
-    # E atualize o texto esperado abaixo
-    assert (loja_customizada.dados_loja() == """
-""")
+	# E atualize o texto esperado abaixo
+	assert (loja_customizada.dados_loja() == """Tropical
+Rua siqueira Campos, 580
+Centro - Paulista - Pernambuco
+CEP:53401-320 Tel (81) 3438-5714
+
+CNPJ: 37.886.772/0001-82
+IE: 4232303-79""")
